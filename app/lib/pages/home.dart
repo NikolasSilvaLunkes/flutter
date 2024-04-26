@@ -1,4 +1,5 @@
-
+import 'package:app/components/menu.dart';
+import 'package:app/components/menuItem.dart';
 import 'package:app/pages/cadastro_clientes_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,44 +16,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/clientes');
-              },
-              child: const Text('Cadastro de Clientes')
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/tiposservicos');
-              },
-              child: const Text('Cadastro de Tipos de Serviços')
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/realizarservico');
-              },
-              child: const Text('Realizar serviço')
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/servicosrealizados');
-              },
-              child: const Text('Serviços Realizados')
-            )
-          ],
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(widget.title),
         ),
-      ),
-    );
+        body: Menu(items: [
+          MenuItem(label: 'Cadastro de Clientes', route: '/clientes'),
+          MenuItem(
+              label: 'Cadastro de Tipos de Serviços', route: '/tiposservicos'),
+          MenuItem(label: 'Realizar serviço', route: '/realizarservico'),
+          MenuItem(label: 'Serviços Realizados', route: '/servicosrealizados')
+        ]));
   }
 }
