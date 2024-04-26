@@ -1,5 +1,6 @@
 
 import 'package:app/components/es_container.dart';
+import 'package:app/components/es_menu.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -21,34 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ESContainer(
         widgets: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/clientes');
-              },
-              child: const Text('Cadastro de Clientes')
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/tiposservicos');
-              },
-              child: const Text('Cadastro de Tipos de Serviços')
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/realizarservico');
-              },
-              child: const Text('Realizar serviço')
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/servicosrealizados');
-              },
-              child: const Text('Serviços Realizados')
-            )
-          ],
+          ESMenu()
+        ],
       ),
     );
   }
