@@ -1,4 +1,5 @@
 
+import 'package:app/components/es_container.dart';
 import 'package:flutter/material.dart';
 
 class ListaTiposServicoPage extends StatefulWidget {
@@ -19,16 +20,13 @@ class _ListaTiposServicoPageState extends State<ListaTiposServicoPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+      body: ESContainer(
+        widgets: [
             ElevatedButton(onPressed: () {
                 Navigator.of(context).pushNamed('/tiposservicoscadastro');
               }, child: const Text('Incluir'))
           ],
         ),
-      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 
+import 'package:app/components/es_container.dart';
 import 'package:flutter/material.dart';
 
 class ListaClientesPage extends StatefulWidget {
@@ -19,15 +20,12 @@ class _ListaClientesPageState extends State<ListaClientesPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+      body: ESContainer(
+        widgets: [
             ElevatedButton(onPressed: () {
                 Navigator.of(context).pushNamed('/clientescadastro');
               }, child: const Text('Incluir'))
           ],
-        ),
       ),
     );
   }

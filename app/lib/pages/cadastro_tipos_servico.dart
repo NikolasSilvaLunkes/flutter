@@ -1,4 +1,5 @@
 
+import 'package:app/components/es_container.dart';
 import 'package:flutter/material.dart';
 
 class CadastroTiposServicoPage extends StatefulWidget {
@@ -11,14 +12,7 @@ class CadastroTiposServicoPage extends StatefulWidget {
 }
 
 class _CadastroTiposServicoPageState extends State<CadastroTiposServicoPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,16 +20,12 @@ class _CadastroTiposServicoPageState extends State<CadastroTiposServicoPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(decoration: InputDecoration(hintText: 'Descrição'),),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {}, child: Text('Salvar'))
-           
+      body: ESContainer(
+        widgets: [
+            TextFormField(decoration: const InputDecoration(hintText: 'Descrição'),),
+            const SizedBox(height: 20,),
+            ElevatedButton(onPressed: () {}, child: const Text('Salvar'))
           ],
-        ),
       ),
     );
   }
