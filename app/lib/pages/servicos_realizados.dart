@@ -1,4 +1,5 @@
 
+import 'package:app/components/es_container.dart';
 import 'package:flutter/material.dart';
 
 class ServicosRealizadosPage extends StatefulWidget {
@@ -11,14 +12,6 @@ class ServicosRealizadosPage extends StatefulWidget {
 }
 
 class _ServicosRealizadosPageState extends State<ServicosRealizadosPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +19,10 @@ class _ServicosRealizadosPageState extends State<ServicosRealizadosPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+      body: const ESContainer(
+        widgets: [
            
           ],
-        ),
       ),
     );
   }
