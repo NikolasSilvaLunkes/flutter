@@ -1,5 +1,6 @@
 
 import 'package:app/components/es_container.dart';
+import 'package:app/infra/repository/clientes_repository.dart';
 import 'package:flutter/material.dart';
 
 class CadastroClientesPage extends StatefulWidget {
@@ -12,6 +13,23 @@ class CadastroClientesPage extends StatefulWidget {
 }
 
 class _CadastroClientesPageState extends State<CadastroClientesPage> {
+
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController documentoController = TextEditingController();
+  TextEditingController telefoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+  void salvar(BuildContext context) async {
+    final clienteRepository =  ClienteRepository();
+    await clienteRepository.salvar(
+      nomeController.text,
+      documentoController.text,
+      telefoneController.text,
+      emailController.text
+    );
+
+    Navigator.of(context).pushNamed('/clientes');
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -22,12 +40,16 @@ class _CadastroClientesPageState extends State<CadastroClientesPage> {
       ),
       body: ESContainer(
         widgets: [
-          TextFormField(decoration: const InputDecoration(hintText: 'Nome')),
-          TextFormField(decoration: const InputDecoration(hintText: 'Documento')),
+          TextFormField(
+            controller: nomeController,
+            decoration: const InputDecoration(hintText: 'Nome')),
+          TextFormField(
+            controller: documentoController,
+            decoration: const InputDecoration(hintText: 'Documento')),
           TextFormField(decoration: const InputDecoration(hintText: 'Telefone')),
           TextFormField(decoration: const InputDecoration(hintText: 'Email')),
           const SizedBox(height: 20,),
-          ElevatedButton(onPressed: () {}, child: const Text('Salvar'))
+          ElevatedButton(onPressed: () { salvar(context);}, child: const Text('Salvar'))
         ],
       ),
       
