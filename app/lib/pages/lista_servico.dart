@@ -1,28 +1,28 @@
 import 'package:app/components/es_container.dart';
-import 'package:app/infra/model/tipo_servico.dart';
-import 'package:app/infra/repository/tipo_servico_repository.dart';
+import 'package:app/infra/model/servico.dart';
+import 'package:app/infra/repository/servico_repository.dart';
 import 'package:flutter/material.dart';
 
-class ListaTiposServicoPage extends StatefulWidget {
-  const ListaTiposServicoPage({super.key, required this.title});
+class ListaServicosPage extends StatefulWidget {
+  const ListaServicosPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<ListaTiposServicoPage> createState() => _ListaTiposServicoPageState();
+  State<ListaServicosPage> createState() => _ListaServicosPageState();
 }
 
-class _ListaTiposServicoPageState extends State<ListaTiposServicoPage> {
-  late Future<List<TipoServico>> _futureTipoServicos;
+class _ListaServicosPageState extends State<ListaServicosPage> {
+  late Future<List<Servico>> _futureServicos;
 
   @override
   void initState() {
     super.initState();
-    _futureTipoServicos = _fetchData();
+    _futureServicos = _fetchData();
   }
 
-  Future<List<TipoServico>> _fetchData() {
-    return TipoServicoRepository().buscarTodos();
+  Future<List<Servico>> _fetchData() {
+    return ServicoRepository().buscarTodos();
   }
 
   @override
@@ -36,13 +36,13 @@ class _ListaTiposServicoPageState extends State<ListaTiposServicoPage> {
         widgets: [
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/tiposservicoscadastro');
+              Navigator.of(context).pushNamed('/realizarservico');
             },
             child: const Text('Incluir'),
           ),
           Expanded(
-            child: FutureBuilder<List<TipoServico>>(
-              future: _futureTipoServicos,
+            child: FutureBuilder<List<Servico>>(
+              future: _futureServicos,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
@@ -54,7 +54,8 @@ class _ListaTiposServicoPageState extends State<ListaTiposServicoPage> {
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text((snapshot.data != null
-                                ? snapshot.data![index]?.nome ?? "Sem nome"
+                                ? snapshot.data![index]?.descricao ??
+                                    "Sem descricao"
                                 : "") ??
                             ""),
                         trailing: Row(
@@ -64,10 +65,10 @@ class _ListaTiposServicoPageState extends State<ListaTiposServicoPage> {
                               icon: Icon(Icons.delete),
                               color: Colors.red,
                               onPressed: () async {
-                                TipoServicoRepository()
+                                ServicoRepository()
                                     .deletar(snapshot.data![index].id!);
                                 setState(() {
-                                  _futureTipoServicos = _fetchData();
+                                  _futureServicos = _fetchData();
                                 });
                               },
                             ),
